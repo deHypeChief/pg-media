@@ -3,11 +3,14 @@ import { Icon } from '@iconify/react'
 import './App.css'
 
 const services = [
-  { icon: 'solar:videocamera-record-bold-duotone', title: 'Event coverage', copy: 'From the first arrival to the final applause, we preserve the moments that matter.' },
-  { icon: 'solar:clapperboard-play-bold-duotone', title: 'Commercials', copy: 'Brand films and campaign visuals designed to hold attention and move people.' },
-  { icon: 'solar:smartphone-2-bold-duotone', title: 'Social content', copy: 'Platform-native content built for relevance, rhythm, and repeat viewing.' },
-  { icon: 'solar:airbuds-case-open-bold-duotone', title: 'Aerial visuals', copy: 'Cinematic perspectives that give places, properties, and stories a new scale.' },
-  { icon: 'solar:layers-bold-duotone', title: 'Post-production', copy: 'Precision editing, colour, sound, and motion that make every frame feel complete.' },
+  { icon: 'solar:videocamera-record-bold-duotone', title: 'Video production', copy: 'High-quality video production from first concept through final delivery.', items: ['Corporate videos', 'Brand and promotional videos', 'Commercials and TV ads', 'Product videos', 'Music videos', 'Documentaries', 'Interviews', 'Social media productions'] },
+  { icon: 'solar:calendar-mark-bold-duotone', title: 'Event coverage', copy: 'Creative, precise coverage that preserves the moments and atmosphere that matter.', items: ['Weddings', 'Corporate events', 'Conferences and seminars', 'Concerts and festivals', 'Product launches', 'Award ceremonies', 'Private events'] },
+  { icon: 'solar:clapperboard-edit-bold-duotone', title: 'Editing and post-production', copy: 'Professional post-production that transforms raw footage into compelling visual stories.', items: ['Professional video editing', 'Colour correction and grading', 'Sound design and audio mixing', 'Motion graphics', 'Intro and outro animation', 'Subtitles and captions', 'Highlight reels', 'Reels, TikTok and Shorts editing'] },
+  { icon: 'mdi:quadcopter', title: 'Drone services', copy: 'Elevated aerial perspectives for events, properties, destinations and documentation.', items: ['Aerial photography', 'Aerial videography', 'Real estate coverage', 'Construction site documentation', 'Event drone coverage', 'Tourism and destination content'] },
+  { icon: 'solar:smartphone-2-bold-duotone', title: 'Brand content creation', copy: 'Platform-ready stories that help brands connect meaningfully with their audience.', items: ['Social media content', 'Campaign videos', 'Product launch content', 'Behind-the-scenes videos', 'Customer testimonials', 'Lifestyle and brand storytelling'] },
+  { icon: 'solar:lightbulb-bolt-bold-duotone', title: 'Creative direction', copy: 'Strategic guidance that shapes strong ideas into clear, powerful visual experiences.', items: ['Concept development', 'Storyboarding', 'Creative planning', 'Production management', 'Script consultation'] },
+  { icon: 'solar:camera-bold-duotone', title: 'Photography', copy: 'Professional photography for individuals, businesses, brands and live events.', items: ['Event photography', 'Corporate photography', 'Product photography', 'Portrait photography', 'Brand photography'] },
+  { icon: 'solar:square-academic-cap-2-bold-duotone', title: 'Training and mentorship', copy: 'Practical editing education and focused mentorship for emerging creatives and teams.', items: ['CapCut training', 'Adobe Premiere Pro training', 'Adobe After Effects training', 'DaVinci Resolve training', 'One-on-one mentorship', 'Corporate training'] },
 ]
 
 const work = [
@@ -15,6 +18,11 @@ const work = [
   { className: 'work-dark', type: 'LIVE MOMENTS', title: 'Energy you can feel.', meta: 'Event / Aftermovie' },
   { className: 'work-light', type: 'SOCIAL FIRST', title: 'Built for the scroll.', meta: 'Content / Campaign' },
 ]
+
+const teamMembers = Array.from({ length: 7 }, (_, index) => ({
+  image: `/team-${String(index + 1).padStart(2, '0')}.jpeg`,
+  number: String(index + 1).padStart(2, '0'),
+}))
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -115,9 +123,11 @@ function App() {
             <article key={service.title} data-reveal style={{ '--delay': `${index * 55}ms` }}>
               <span className="service-index">0{index + 1}</span>
               <Icon className="service-icon" icon={service.icon} />
-              <h3>{service.title}</h3>
-              <p>{service.copy}</p>
-              <Icon className="service-arrow" icon="solar:arrow-right-up-linear" />
+              <div className="service-intro"><h3>{service.title}</h3><p>{service.copy}</p></div>
+              <details>
+                <summary>View capabilities <Icon icon="solar:add-circle-linear" /></summary>
+                <ul>{service.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </details>
             </article>
           ))}
         </div>
@@ -130,10 +140,9 @@ function App() {
           {work.map((item, index) => (
             <article className={item.className} key={item.title} data-reveal style={{ '--delay': `${index * 80}ms` }}>
               <div className="work-top"><span>{item.type}</span><span>0{index + 1}</span></div>
-              {index === 0 && <img src="/pj-profile.png" alt="PJ Media monogram artwork" />}
-              {index === 1 && <img className="stock-frame" src="/stock-production.jpg" alt="Camera operator preparing professional production equipment" />}
+              {index === 0 && <video className="work-video" src="/pj-showreel.mp4" poster="/pj-profile.png" autoPlay muted loop playsInline preload="metadata" aria-label="PJ Media showreel" />}
+              {index === 1 && <video className="work-video" src="/wedding-film.mp4" autoPlay muted loop playsInline preload="auto" aria-label="PJ Media wedding film" />}
               {index === 2 && <img className="stock-frame" src="/stock-aerial.jpg" alt="Aerial city and waterfront view captured by drone" />}
-              <button type="button" aria-label={`Play ${item.title}`}><Icon icon="solar:play-bold" /></button>
               <div className="work-caption"><h3>{item.title}</h3><p>{item.meta}</p></div>
             </article>
           ))}
@@ -144,19 +153,19 @@ function App() {
         <div className="section-label light"><span>The team</span><span>People behind the frames</span></div>
         <div className="team-heading" data-reveal>
           <h2>Small team.<br /><em>Big vision.</em></h2>
-          <p>Meet the creative minds turning ideas into visuals with intention. Team portraits are ready to be added when you provide them.</p>
+          <p>Meet the creative minds turning ideas into visuals with intention, precision and a shared eye for powerful stories.</p>
         </div>
         <div className="team-grid">
-          {[1, 2, 3, 4].map((member, index) => (
-            <article key={member} data-reveal style={{ '--delay': `${index * 65}ms` }}>
+          {teamMembers.map((member, index) => (
+            <article key={member.image} data-reveal style={{ '--delay': `${index * 65}ms` }}>
               <div className="team-portrait">
-                <span>PJ</span>
-                <Icon icon="solar:camera-minimalistic-linear" />
+                <img src={member.image} alt={`PJ Media team member ${index + 1}`} />
+                <span className="portrait-wash" />
               </div>
               <div className="team-meta">
-                <h3>Team member</h3>
-                <p>Portrait and role coming soon</p>
-                <span>0{member}</span>
+                <h3>Creative team</h3>
+                <p>PJ Media crew</p>
+                <span>{member.number}</span>
               </div>
             </article>
           ))}
@@ -173,10 +182,13 @@ function App() {
         <div className="footer-inner" data-reveal>
           <p className="eyebrow"><span /> Your story starts here</p>
           <h2>Let’s create<br />something <em>unforgettable.</em></h2>
-          <a className="contact-link" href="mailto:hello@pjmedia.ng">hello@pjmedia.ng <Icon icon="solar:arrow-right-up-linear" /></a>
+          <div className="contact-actions">
+            <a className="contact-link" href="mailto:pjmediastudios@gmail.com">pjmediastudios@gmail.com <Icon icon="solar:arrow-right-up-linear" /></a>
+            <a className="contact-link" href="tel:+2349051340245">+234 905 134 0245 <Icon icon="solar:phone-calling-linear" /></a>
+          </div>
           <div className="footer-bottom">
             <img src="/pj-white-logo.png" alt="PJ Media" />
-            <div><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">TikTok</a></div>
+            <div><a href="https://www.instagram.com/pjmedia.studio" target="_blank" rel="noreferrer">Instagram</a><a href="https://x.com/pjmediastudio" target="_blank" rel="noreferrer">X</a></div>
             <p>© 2026 PJ Media<br />Every frame, created with intention.</p>
           </div>
         </div>
