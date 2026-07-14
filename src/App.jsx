@@ -19,10 +19,9 @@ const work = [
   { className: 'work-light', type: 'SOCIAL FIRST', title: 'Built for the scroll.', meta: 'Content / Campaign' },
 ]
 
-const teamMembers = Array.from({ length: 7 }, (_, index) => ({
-  image: `/team-${String(index + 1).padStart(2, '0')}.jpeg`,
-  number: String(index + 1).padStart(2, '0'),
-}))
+const teamMembers = Array.from({ length: 7 }, (_, index) =>
+  `/team-${String(index + 1).padStart(2, '0')}.jpeg`,
+)
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -140,9 +139,9 @@ function App() {
           {work.map((item, index) => (
             <article className={item.className} key={item.title} data-reveal style={{ '--delay': `${index * 80}ms` }}>
               <div className="work-top"><span>{item.type}</span><span>0{index + 1}</span></div>
-              {index === 0 && <video className="work-video" src="/pj-showreel.mp4" poster="/pj-profile.png" autoPlay muted loop playsInline preload="metadata" aria-label="PJ Media showreel" />}
-              {index === 1 && <video className="work-video" src="/wedding-film.mp4" autoPlay muted loop playsInline preload="auto" aria-label="PJ Media wedding film" />}
-              {index === 2 && <img className="stock-frame" src="/stock-aerial.jpg" alt="Aerial city and waterfront view captured by drone" />}
+              {index === 0 && <video className="work-video" src="/brand-film.mp4" autoPlay muted loop playsInline preload="auto" aria-label="PJ Media brand film" />}
+              {index === 1 && <video className="work-video" src="/pj-showreel.mp4" autoPlay muted loop playsInline preload="auto" aria-label="PJ Media showreel" />}
+              {index === 2 && <video className="work-video" src="/wedding-film.mp4" autoPlay muted loop playsInline preload="auto" aria-label="PJ Media wedding film" />}
               <div className="work-caption"><h3>{item.title}</h3><p>{item.meta}</p></div>
             </article>
           ))}
@@ -157,15 +156,10 @@ function App() {
         </div>
         <div className="team-grid">
           {teamMembers.map((member, index) => (
-            <article key={member.image} data-reveal style={{ '--delay': `${index * 65}ms` }}>
+            <article key={member} data-reveal style={{ '--delay': `${index * 65}ms` }}>
               <div className="team-portrait">
-                <img src={member.image} alt={`PJ Media team member ${index + 1}`} />
+                <img src={member} alt={`PJ Media team member ${index + 1}`} />
                 <span className="portrait-wash" />
-              </div>
-              <div className="team-meta">
-                <h3>Creative team</h3>
-                <p>PJ Media crew</p>
-                <span>{member.number}</span>
               </div>
             </article>
           ))}
