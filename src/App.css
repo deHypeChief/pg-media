@@ -126,9 +126,8 @@ h1 em, h2 em { font-weight: 400; text-transform: none; }
 .team-heading > p { width: 350px; margin: 0 0 8px; color: #888; line-height: 1.5; }
 .team-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
 .team-grid article { grid-column: span 2; min-width: 0; }
-.team-grid article:nth-child(5) { grid-column: 2 / span 2; }
-.team-grid article:nth-child(6) { grid-column: 4 / span 2; }
-.team-grid article:nth-child(7) { grid-column: 6 / span 2; }
+.team-grid article:nth-child(5) { grid-column: 3 / span 2; }
+.team-grid article:nth-child(6) { grid-column: 5 / span 2; }
 .team-portrait { position: relative; aspect-ratio: .76; display: grid; place-items: center; overflow: hidden; color: rgba(255,255,255,.8); background: linear-gradient(145deg, #e82121, #5c0808); }
 .team-grid article:nth-child(2) .team-portrait { background: linear-gradient(145deg, #222, #080808); }
 .team-grid article:nth-child(3) .team-portrait { background: linear-gradient(145deg, #e88c8c, #e82121); }
@@ -192,8 +191,7 @@ footer h2 { max-width: 1100px; font-size: clamp(60px, 9vw, 138px); }
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 35px 12px; }
   .team-grid article,
   .team-grid article:nth-child(5),
-  .team-grid article:nth-child(6),
-  .team-grid article:nth-child(7) { grid-column: auto; }
+  .team-grid article:nth-child(6) { grid-column: auto; }
   .footer-bottom { grid-template-columns: 1fr 1fr; gap: 30px; }
   .footer-bottom div { justify-self: end; }
   .footer-bottom p { justify-self: start; text-align: left; grid-column: 1 / -1; }

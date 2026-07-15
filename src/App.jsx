@@ -19,8 +19,8 @@ const work = [
   { className: 'work-light', type: 'SOCIAL FIRST', title: 'Built for the scroll.', meta: 'Content / Campaign' },
 ]
 
-const teamMembers = Array.from({ length: 7 }, (_, index) =>
-  `/team-${String(index + 1).padStart(2, '0')}.jpeg`,
+const teamMembers = ['01', '02', '03', '04', '06', '07'].map(
+  (number) => `/team-${number}.jpeg`,
 )
 
 function App() {
